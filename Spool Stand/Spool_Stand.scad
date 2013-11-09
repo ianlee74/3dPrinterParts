@@ -1,8 +1,8 @@
-bearing_od = 22;
+bearing_od = 21.8;
 tube_length = 110;
 tube_wall_thickness = 3;
-end_ring_diameter = 50;
-end_ring_thickness = 10;
+end_ring_diameter = 37;
+end_ring_thickness = 4;
 rod_extension_length = 25;
 rod_diameter = 7.8;
 
@@ -39,10 +39,15 @@ module rod() {
 	cylinder (h=tube_length + rod_extension_length*2, r=rod_diameter/2, $fn=200);
 };
 
+module mount() {
+	//polyhedron(points=[[
+};
+
 module completeAssembly() {
 	spool();
 	translate([0, 0, -end_ring_thickness-rod_extension_length])
 	#rod();
 };
 
-completeAssembly();
+//completeAssembly();
+spool();

@@ -9,10 +9,12 @@ bearing_outer_dia = 21.8;
 small_gear_dia = 25;
 large_gear_dia = 100;
 
-winder();
+//winder();
 //small_gear();
+rotate([180])
+small_gear_rod();
 //large_gear();
-//small_gear_rod();
+//large_gear_rod();
 
 module winder ()
 {
@@ -56,6 +58,9 @@ module hook() {
 		
 		translate([-band_clearance/2, -2, 5])
 		cube([band_clearance, dia/2 + 5, dia/2 + 5]);
+		
+		translate([-dia/2, -dia/2, 17])
+		cube([dia, dia, 5]);
 	}
 }
 

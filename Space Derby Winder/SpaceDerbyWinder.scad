@@ -11,8 +11,8 @@ large_gear_dia = 100;
 
 //winder();
 //small_gear();
-rotate([180])
-small_gear_rod();
+rotate([180]) small_gear_rod();
+//rotate([180]) main_drive_rod();
 //large_gear();
 //large_gear_rod();
 
@@ -59,7 +59,7 @@ module hook() {
 		translate([-band_clearance/2, -2, 5])
 		cube([band_clearance, dia/2 + 5, dia/2 + 5]);
 		
-		translate([-dia/2, -dia/2, 17])
+		translate([-dia/2, -dia/2, 18])
 		cube([dia, dia, 5]);
 	}
 }
@@ -91,8 +91,22 @@ module bandHandle() {
 	}
 }
 
+module main_drive_rod() {
+	union() {
+		small_gear_rod();
+
+		// head adapter
+		translate([0, 0, -20])
+		cylinder(h=20, r=bearing_inside_dia/2, $fn=6);
+	}
+}
+
 module small_gear_rod() {
-	rod_len = gear_thickness + rod_extension_len + 50;
+	rod_len = 43 	/* thickness of plywood + gear + plexiglass + 2*washers */
+				 + 10 /* extension in the front */
+				 + rod_extension_len;
+	hex_len = 20;
+
 	union() {
 		rod(rod_len, 0.1);
 		translate([0, 0, rod_len])

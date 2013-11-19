@@ -34,15 +34,15 @@ difference() {
     }
 
     // Effector mounting side
-    translate([0, hotend_radius/2, 0])
-      cube([bracket_width, effector_offset+hotend_radius/2, mount_thickness]);
+    translate([0, hotend_radius/2 - 1, 0])
+      cube([bracket_width, effector_offset+hotend_radius/2 + 1, mount_thickness]);
   }
 
   // Thru holes
-  for (hole_angle = [-30:60:30]) {
+  for (hole_angle = [-60:60:90]) {
     translate([bracket_width/2, 0, 0])
       translate([sin(hole_angle)*hole_radius,cos(hole_angle)*hole_radius,0])
-      cylinder(r=m3_wide_radius, h=mount_thickness);
+      cylinder(r=m3_wide_radius, h=mount_thickness+ 5, center=true);
   }
 
   // Thru hole for hotend

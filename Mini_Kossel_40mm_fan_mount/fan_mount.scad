@@ -23,14 +23,14 @@ difference() {
     rotate(a=mount_angle, v=[1,0,0])
       difference() {
         cube([bracket_width, bracket_length, mount_thickness]);
-        translate([bracket_width/2, fan_radius+hole_offset, 0])
-          cylinder(r=fan_radius, h=mount_thickness);
+        translate([bracket_width/2, fan_radius+hole_offset, -1.5])
+          cylinder(r=fan_radius, h=mount_thickness + 2, $fn=100);
 
         // Fan mounting holes
-        translate([m3_wide_radius+hole_offset, m3_wide_radius+hole_offset, 0])
-          cylinder(r=m3_wide_radius, h=mount_thickness);
-        translate([bracket_width-m3_wide_radius-hole_offset, m3_wide_radius+hole_offset, 0])
-          cylinder(r=m3_wide_radius, h=mount_thickness);
+        translate([m3_wide_radius+hole_offset, m3_wide_radius+hole_offset, -1.5])
+          cylinder(r=m3_wide_radius, h=mount_thickness + 2);
+        translate([bracket_width-m3_wide_radius-hole_offset, m3_wide_radius+hole_offset, -1.5])
+          cylinder(r=m3_wide_radius, h=mount_thickness + 2);
     }
 
     // Effector mounting side
@@ -46,6 +46,23 @@ difference() {
   }
 
   // Thru hole for hotend
-  translate([bracket_width/2, 0, 0])
-      cylinder(r=hotend_radius, h=mount_thickness);
+  translate([bracket_width/2, 0, 1.5])
+      cylinder(r=hotend_radius, h=mount_thickness + 1, center=true, $fn=100);
+
+	// Kossel logo
+	translate([20, 30, 1]) 
+	rotate([0, 180, 180])
+   scale([0.11, 0.11, 1]) 
+	import("logotype.stl");
+
+	// Cut out excess plastic on sides.
+	translate([-4, 16, 0])
+		cylinder(r=hotend_radius, h=mount_thickness + 1);
+	translate([-.8, 2, 0])
+		cube([5, 15, mount_thickness]);
+	translate([bracket_width + 4, 16, 0])
+		#cylinder(r=hotend_radius, h=mount_thickness + 1);
+	translate([bracket_width - 4.2, 2, 0])
+		#cube([5, 15, mount_thickness]);
+
 };

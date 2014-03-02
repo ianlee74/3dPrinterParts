@@ -1,10 +1,16 @@
 use <NM2.scad>;
 
-band_thickness = 2;
-logo_depth = 1;
+// Finger diameter in mm
+ring_size = 20;
 
-topper_width = 23;
-topper_height = 20;
+// Band width in mm
+band_width = 8;
+
+// Multiplying by 1 ensures these variables do not appear in Customizer.
+band_thickness = 1*2;
+logo_depth = 1*1;
+topper_width = 1*23;
+topper_height = 1*20;
 
 function scaleFactor(ringSize) = (ringSize+2*band_thickness)/topper_width;
 
@@ -26,8 +32,10 @@ module ring(size, width)
 			ringTopper(size/2 + band_thickness+1, size);
 		}
 
+		// Hollow out for the finger.
 		cylinder(h=topper_width*scaleAmt+1, r=size/2, center=true, $fn=200);
 
+		// Round the union of the band & the topper.
 		for(i = [-1,1])
 		{
 			translate([-size/2-band_thickness-.5, 0, (width/2 + size/2 + 2)*i])
@@ -59,8 +67,4 @@ module ringTopper(thickness, ringSize)
 	}
 }
 
-//color("purple")
-//ringBand(10, 18);
-//ringTopper(6);
-//nmLogo(4);
-rotate([90,0,0]) ring(18, 10);
+rotate([90,0,0]) ring(ring_size, band_width);

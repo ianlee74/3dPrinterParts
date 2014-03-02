@@ -4,7 +4,7 @@ use <NM2.scad>;
 ring_size = 20;
 
 // Band width in mm
-band_width = 8;
+band_width = 6;
 
 // Multiplying by 1 ensures these variables do not appear in Customizer.
 band_thickness = 1*2;

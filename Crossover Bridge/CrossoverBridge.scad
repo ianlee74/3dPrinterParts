@@ -15,7 +15,7 @@ module plank(tolerance=0)
 {
 	difference()
 	{
-		cube([75, 10+tolerance, 3.5]);
+		cube([75, 10+tolerance, 3.5+tolerance]);
 	}
 }
 
@@ -36,7 +36,7 @@ module bridgeSupport()
 			{
 				translate([115, i, 0])
 				rotate([0, 0, 90])
-					supportPole(165);
+					%supportPole(165);
 			}
 		}
 		
@@ -44,11 +44,11 @@ module bridgeSupport()
 		{
 			translate([-1.5, i, 3])
 			rotate([0, 90, 0])
-				#plank(0.2);
+				#plank(0.3);
 		}
 	}
 }
 
 //supportPole(165);
-//bridgeSupport();
-plank();
+bridgeSupport();
+//plank();

@@ -17,6 +17,7 @@ bracket_width = fan_hole_pitch+2*(hole_offset+m3_wide_radius);  // Overall brack
 $fn = 40;
 
 //rotate(a=90, v=[0,1,0]) // print on its side for a strong angle joint
+union() {
 difference() {
   union() {
     translate([0, hotend_radius+effector_offset, 0])
@@ -65,4 +66,10 @@ difference() {
 	translate([bracket_width - 4.2, 2, -0.1])
 		cube([5, 15, mount_thickness+0.2]);
 
+}
+// Add support for the center of the "O"
+translate([9.5, 24, 0])
+	cube([1.0, 2.0, mount_thickness]);
+translate([9.5, 28.25, 0])
+	 cube([1.0, 2.0, mount_thickness]);
 };

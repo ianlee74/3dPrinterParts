@@ -1,2 +1,2 @@
-use <wheel_front.stl>;
+import("wheelfront_fixed.stl");
 

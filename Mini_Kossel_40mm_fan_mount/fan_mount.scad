@@ -57,19 +57,18 @@ difference() {
 	import("logotype.stl");
 
 	// Cut out excess plastic on sides.
-	translate([-4, 16, 0])
+	translate([-4, 16, -0.1])
 		cylinder(r=hotend_radius, h=mount_thickness + 1);
-	translate([-.8, 2, 0])
-		cube([5, 15, mount_thickness]);
-	translate([bracket_width + 4, 16, 0])
+	translate([-.8, 2, -0.1])
+		cube([5.2, 15, mount_thickness+0.2]);
+	translate([bracket_width + 4, 16, -0.1])
 		cylinder(r=hotend_radius, h=mount_thickness + 1);
-	translate([bracket_width - 4.2, 2, 0])
-		cube([5, 15, mount_thickness]);
+	translate([bracket_width - 4.2, 2, -0.1])
+		cube([5, 15, mount_thickness+0.2]);
 }
-
-	 // add support for the "O"
-	 translate([9.75, 29, 0])
-		cube([.5, 1, mount_thickness]);
-	 translate([9.75, 24.75, 0])
-		cube([.5, 1, mount_thickness]);
+// Add support for the center of the "O"
+translate([9.5, 24, 0])
+	cube([1.0, 2.0, mount_thickness]);
+translate([9.5, 28.25, 0])
+	 cube([1.0, 2.0, mount_thickness]);
 };

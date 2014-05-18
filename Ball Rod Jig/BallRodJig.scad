@@ -4,6 +4,7 @@ ball_dia = 12.7;
 rod_dia = 5.8;
 ball_cnt = 2;
 
+fudge = 0.2*1.0;
 wall_thickness = 5.0*1.0;
 height = ball_dia/2+wall_thickness;
 end_length = 15*1.0;
@@ -19,12 +20,12 @@ module clamp_half()
 		for(i=[0:ball_cnt-1]) translate([0, (ball_dia + wall_thickness)*i, 0])
 		{		
 			// Ball cutout
-			sphere(r=ball_dia/2 + 0.1, $fn=50);
+			sphere(r=ball_dia/2 + fudge, $fn=50);
 			
 			// Rod cutout
 			translate([-ball_dia/2, 0, 0])
 			rotate([0, 90, 0])			
-				cylinder(r=rod_dia/2 + 0.1, h=wall_thickness + 1, center=true, $fn=30);
+				cylinder(r=rod_dia/2 + fudge, h=wall_thickness + 1, center=true, $fn=30);
 		}
 
 		// Left screw hole.
@@ -53,21 +54,21 @@ module bottom_clamp_half()
 	{
 		clamp_half();
 		
-		translate([-ball_dia/2 - wall_thickness/2, -ball_dia/2 - end_length - mount_len + 0.1, height - mount_thickness])
+		translate([-ball_dia/2 - wall_thickness/2, -ball_dia/2 - end_length - mount_len + fudge, height - mount_thickness])
 			difference()
 			{
 				cube([ball_dia + wall_thickness, mount_len, mount_thickness]);
 				
-				translate([(ball_dia + wall_thickness)/2, mount_len/2, -0.1])
+				translate([(ball_dia + wall_thickness)/2, mount_len/2, -fudge])
 					cylinder(r=m3_wide_radius*1.5, h=mount_thickness + 1, $fn=20);
 			}
 
-		translate([-ball_dia/2 - wall_thickness/2, ball_dia/2 + (ball_dia + wall_thickness) * (ball_cnt - 1) + mount_len + mount_len/2 - 0.1, height - mount_thickness])
+		translate([-ball_dia/2 - wall_thickness/2, ball_dia/2 + (ball_dia + wall_thickness) * (ball_cnt - 1) + mount_len + mount_len/2 - fudge, height - mount_thickness])
 			difference()
 			{
 				cube([ball_dia + wall_thickness, mount_len, mount_thickness]);
 				
-				translate([(ball_dia + wall_thickness)/2, mount_len/2, -0.1])
+				translate([(ball_dia + wall_thickness)/2, mount_len/2, -fudge])
 					cylinder(r=m3_wide_radius*1.5, h=mount_thickness + 1, $fn=20);
 			}
 	}

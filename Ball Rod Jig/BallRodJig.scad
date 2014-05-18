@@ -2,10 +2,11 @@ include <configuration.scad>;
 
 ball_dia = 12.7;
 rod_dia = 5.8;
-wall_thickness = 5.0;
+ball_cnt = 2;
+
+wall_thickness = 5.0*1.0;
 height = ball_dia/2+wall_thickness;
-ball_cnt = 3;
-end_length = 15;
+end_length = 15*1.0;
 
 module clamp_half()
 {
@@ -72,9 +73,11 @@ module bottom_clamp_half()
 	}
 }
 
-//rotate([0,180,0])
+translate([wall_thickness*2,0,0])
+rotate([0,180,0])
 	top_clamp_half();
 
+translate([-ball_dia/2-wall_thickness,0,0])
 rotate([0,180,0])
 	bottom_clamp_half();
 

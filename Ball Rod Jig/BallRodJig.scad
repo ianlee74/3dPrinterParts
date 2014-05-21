@@ -17,10 +17,11 @@ module clamp_half()
 		translate([-(ball_dia+wall_thickness)/2,-(ball_dia/2) - end_length])
 		cube([ball_dia + wall_thickness, ball_dia*ball_cnt + wall_thickness*(ball_cnt-1) + end_length*2, height]);
 
-		for(i=[0:ball_cnt-1]) translate([0, (ball_dia + wall_thickness)*i, 0])
+		for(i=[0:ball_cnt-1]) translate([0, (ball_dia + wall_thickness)*i, -0.1])
 		{		
 			// Ball cutout
 			sphere(r=ball_dia/2 + fudge, $fn=50);
+%			sphere(r=ball_dia/2 + fudge, $fn=50);
 			
 			// Rod cutout
 			translate([-ball_dia/2, 0, 0])
